@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - "5672:5672" # AMQP protocol
+      - "15672:15672" # Management UI -> http://localhost:15672 (guest/guest)
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # The HTTP API: accepts sales, runs the advance-payout job, reconciles
+  # sales, and accepts withdrawal requests (which it hands off to RabbitMQ
+  # rather than processing synchronously).
+  api:
+    build: .
+    command: node src/server.js
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_PATH: /app/data/payouts.db
+      QUEUE_ENABLED: "true"
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+    volumes:
+      - payout-data:/app/data
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  # The queue consumers: a simulated payment-gateway worker (consumes
+  # withdrawal.requests, "calls the bank", publishes an outcome) and the
+  # settlement consumer (consumes withdrawal.results, applies Question 2's
+  # credit-back-on-failure logic). Runs as its own process/container so it
+  # can be scaled independently of the API — the whole point of using a
+  # queue here.
+  worker:
+    build: .
+    command: node src/queue/worker.js
+    environment:
+      DB_PATH: /app/data/payouts.db
+      QUEUE_ENABLED: "true"
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+    volumes:
+      - payout-data:/app/data
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+volumes:
+  # Shared so the API (writer of sales/withdrawals) and the worker
+  # (writer of settlement outcomes) see the same SQLite file. WAL mode
+  # (enabled in src/db/connection.js) makes this safe for one-writer-at-a-
+  # time access across processes.
+  payout-data:

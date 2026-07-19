@@ -1,0 +1,23 @@
+{
+  "name": "payout-management-system",
+  "version": "1.0.0",
+  "description": "Low-Level Design & implementation of a User Payout Management System (advance payouts + reconciliation + withdrawal + failed-payout recovery).",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "worker": "node src/queue/worker.js",
+    "demo": "node scripts/demo.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --test tests/**/*.test.js"
+  },
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "cors": "^2.8.6",
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}
