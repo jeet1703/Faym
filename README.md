@@ -2,23 +2,43 @@
 
 A complete implementation of the **SDE Intern Assignment** for designing a scalable **User Payout Management System**. The system manages affiliate sales, advance payouts, reconciliation-driven final payouts, wallet management, withdrawal processing, and failed payout recovery using an asynchronous architecture.
 
-> **📄 Detailed Documentation:**
+## 🌐 Live Demo
+
+The project is fully deployed and publicly accessible.
+
+| Service | URL |
+|---------|-----|
+| **Frontend (Netlify)** | https://faym-assignment.netlify.app/ |
+| **Backend API (Render)** | https://faym.onrender.com |
+
+### API Health Check
+
+```
+GET https://faym.onrender.com/health
+```
+
+> **Note:** The backend is hosted on Render's free tier. If the service has been idle, the first request may take **30–60 seconds** to wake up.
+
+---
+
+> **📄 Detailed Documentation**
+>
 > Please refer to the attached **Low-Level Design (LLD) PDF** for the complete system design, database schema, class diagrams, sequence diagrams, state machines, API documentation, edge cases, and design decisions.
 
 ---
 
 ## Features
 
-* Advance payout (10% of eligible pending sales)
-* Sale reconciliation (Approved / Rejected)
-* Final payout calculation
-* Automatic clawback for rejected sales
-* Wallet management with transaction ledger
-* 24-hour withdrawal cooldown
-* Failed/Cancelled/Rejected payout recovery
-* RabbitMQ-based asynchronous withdrawal settlement
-* RESTful APIs
-* Interactive React dashboard
+- Advance payout (10% of eligible pending sales)
+- Sale reconciliation (Approved / Rejected)
+- Final payout calculation
+- Automatic clawback for rejected sales
+- Wallet management with transaction ledger
+- 24-hour withdrawal cooldown
+- Failed/Cancelled/Rejected payout recovery
+- RabbitMQ-based asynchronous withdrawal settlement
+- RESTful APIs
+- Interactive React dashboard
 
 ---
 
@@ -39,12 +59,12 @@ A complete implementation of the **SDE Intern Assignment** for designing a scala
 
 The project follows a simple multi-environment Git workflow.
 
-| Branch    | Purpose                                |
-| --------- | -------------------------------------- |
-| **main**  | Stable production-ready implementation |
-| **dev**   | Active development branch              |
-| **qc**    | Quality Control and testing            |
-| **stage** | Pre-production staging branch          |
+| Branch | Purpose |
+|---------|---------|
+| **main** | Stable production-ready implementation |
+| **dev** | Active development branch |
+| **qc** | Quality Control and testing |
+| **stage** | Pre-production staging branch |
 
 Development Flow:
 
@@ -64,24 +84,24 @@ main
 
 ### Backend
 
-* Node.js
-* Express.js
-* SQLite
-* RabbitMQ
+- Node.js
+- Express.js
+- SQLite
+- RabbitMQ
 
 ### Frontend
 
-* React
-* Vite
+- React
+- Vite
 
 ### Testing
 
-* Jest
+- Jest
 
 ### Documentation
 
-* Mermaid
-* Markdown
+- Mermaid
+- Markdown
 
 ---
 
@@ -107,14 +127,14 @@ Settlement Worker
 
 ## Key Modules
 
-* Sales Management
-* Advance Payout Engine
-* Reconciliation Engine
-* Wallet Service
-* Withdrawal Service
-* Payout Recovery Service
-* Transaction Ledger
-* RabbitMQ Settlement Worker
+- Sales Management
+- Advance Payout Engine
+- Reconciliation Engine
+- Wallet Service
+- Withdrawal Service
+- Payout Recovery Service
+- Transaction Ledger
+- RabbitMQ Settlement Worker
 
 ---
 
@@ -122,19 +142,21 @@ Settlement Worker
 
 ### Install Dependencies
 
-Backend
+#### Backend
 
 ```bash
 cd payout-management-system
 npm install
 ```
 
-Frontend
+#### Frontend
 
 ```bash
 cd payout-ui
 npm install
 ```
+
+---
 
 ### Start Backend
 
@@ -149,6 +171,8 @@ Runs on:
 http://localhost:3000
 ```
 
+---
+
 ### Start Frontend
 
 ```bash
@@ -162,6 +186,8 @@ Runs on:
 http://localhost:5173
 ```
 
+---
+
 ### Run Tests
 
 ```bash
@@ -173,14 +199,14 @@ npm test
 
 ## Project Highlights
 
-* Layered Repository-Service Architecture
-* Transaction-safe wallet updates
-* Idempotent advance payout processing
-* Append-only financial transaction ledger
-* RabbitMQ asynchronous settlement workflow
-* Automatic failed payout recovery
-* 24-hour withdrawal cooldown
-* Production-style Git workflow
+- Layered Repository-Service Architecture
+- Transaction-safe wallet updates
+- Idempotent advance payout processing
+- Append-only financial transaction ledger
+- RabbitMQ asynchronous settlement workflow
+- Automatic failed payout recovery
+- 24-hour withdrawal cooldown
+- Production-style Git workflow
 
 ---
 
@@ -188,28 +214,28 @@ npm test
 
 The complete project documentation is available in the accompanying **Low-Level Design (LLD) PDF**, which includes:
 
-* Low-Level Design (LLD)
-* System Architecture
-* Database Schema
-* Class Design
-* Sequence Diagrams
-* State Machines
-* API Documentation
-* Edge Cases & Failure Handling
-* Design Decisions & Trade-offs
+- Low-Level Design (LLD)
+- System Architecture
+- Database Schema
+- Class Design
+- Sequence Diagrams
+- State Machines
+- API Documentation
+- Edge Cases & Failure Handling
+- Design Decisions & Trade-offs
 
 ---
 
 ## Future Improvements
 
-* JWT Authentication
-* PostgreSQL support
-* Redis caching
-* Docker & Kubernetes deployment
-* Background Cron Scheduler
-* Payment Gateway Integration
-* Multi-user support
-* Admin Analytics Dashboard
+- JWT Authentication
+- PostgreSQL support
+- Redis caching
+- Docker & Kubernetes deployment
+- Background Cron Scheduler
+- Payment Gateway Integration
+- Multi-user support
+- Admin Analytics Dashboard
 
 ---
 
