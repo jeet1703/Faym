@@ -12,7 +12,7 @@ function buildApp(container) {
   app.use(express.json());
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.get('/health', (req, res) => res.json({ status: 'ok' }));
+  app.get('/status', (req, res) => res.json({ status: 'ok' }));
 
   app.use('/', buildRouter(container));
 

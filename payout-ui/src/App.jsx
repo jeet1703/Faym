@@ -56,7 +56,7 @@ function App() {
   // Check backend health
   const checkHealth = async () => {
     try {
-      const data = await apiCall('/health');
+      const data = await apiCall('/status');
       if (data.status === 'ok') {
         setApiOnline(true);
       }
