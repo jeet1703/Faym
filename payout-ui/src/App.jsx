@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'https://faym.onrender.com'; // Production API
+// const API_BASE = 'http://localhost:3000'; // Local API
 const ACTIVE_USER = 'john_doe';
 
 function App() {
