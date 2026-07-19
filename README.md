@@ -4,7 +4,7 @@ A complete implementation of the **SDE Intern Assignment** for designing a scala
 
 ## 🌐 Live Demo
 
-The project is fully deployed and publicly accessible.
+The project is fully deployed and publicly accessible. ( THE BACKEND TAKES TIME TO START PLEASE WAIT FOR IT TO START)
 
 | Service | URL |
 |---------|-----|
